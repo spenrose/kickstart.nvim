@@ -560,6 +560,12 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        ruby_ls = {
+          cmd = { 'bundle', 'exec', 'ruby-lsp' },
+        },
+        rubocop = {
+          cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
+        },
 
         lua_ls = {
           -- cmd = {...},
@@ -625,7 +631,7 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = true,
       },
       formatters_by_ft = {
@@ -635,6 +641,9 @@ require('lazy').setup({
       formatters = {
         golines = {
           prepend_args = { '-m', '120' },
+        },
+        rubocop = {
+          cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
         },
       },
     },
@@ -804,7 +813,7 @@ require('lazy').setup({
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'go', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'go', 'html', 'lua', 'markdown', 'ruby', 'vim', 'vimdoc' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
